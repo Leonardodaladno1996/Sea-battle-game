@@ -218,7 +218,14 @@ def game_process():
         for letter in game_map:
             s = letter + " "
             for element in game_map[letter]:
-                s += "* " if type(element) is int else "□ " if element is None else "■ "
+                if isinstance(element, int):
+                    s += "* "
+                elif element is None:
+                    s += "□ "
+                elif element == "0":
+                    s += "■ "
+                elif element == "1":
+                    s += "x "
             print(s)
         print()
     def show_enemy_map_in_process(game_map):
@@ -227,12 +234,17 @@ def game_process():
         :param game_map: текущий словарь игровой карты противника
         :return: функция возвращает None
         '''
-        print("۞ Карта твоего соперника, кружки - твои попадания ۞\n")
+        print("۞ Карта твоего соперника, квадратики - твои попадания ۞\n")
         print("* 1 2 3 4 5 6 7 8 9 10")
         for letter in game_map:
             s = letter + " "
             for element in game_map[letter]:
-                s += "O " if type(element) is str else "x " if type(element) is float else "◦ "
+                if isinstance(element, str):
+                    s += "■ "
+                elif isinstance(element, float):
+                    s += "x "
+                else:
+                    s += "◦ "
             print(s)
         print()
 
@@ -385,6 +397,7 @@ def game_process():
                 print("Почему можно только по одной клетке стрелять, хочу по всем уже и выиграть наконец...\n".upper())
             else:
                 print("Просто  глушу рыбку и дельфинов, я не для этого создан !!")
+            map_1[letter][number-1] = "1"
             time.sleep(1.6)
             show_game_map_in_process(map_1)
             return
