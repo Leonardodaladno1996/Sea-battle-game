@@ -232,7 +232,7 @@ def game_process():
         for letter in game_map:
             s = letter + " "
             for element in game_map[letter]:
-                s += "● " if type(element) is str else "* " if type(element) is float else "◦ "
+                s += "O " if type(element) is str else "x " if type(element) is float else "◦ "
             print(s)
         print()
 
@@ -244,6 +244,7 @@ def game_process():
         :return: функция возвращает None
         '''
         print("۞ Введите координату поля, где по вашему мнению может быть вражеский корабль ۞\n")
+        show_enemy_map_in_process(map_2)
         while True:
             try:
                 letter, number = input().upper(), int(input())
@@ -417,6 +418,9 @@ def game_process():
         
 
 game_process()
+    
+    
+    
 
 
 
